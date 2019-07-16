@@ -1,12 +1,10 @@
-var net = require('net')
-const port = process.argv[2];
-var server = net.createServer(function (socket) {
-  // socket handling logic
-  let date = new Date()
-  let solution = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`
+const net = require('net')
+const port = process.argv[2]
+const server = net.createServer(function (socket) {
+  const date = new Date()
+  const solution = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`
 
-  socket.write(`${solution}\n`)
-  socket.end()
+  socket.end(`${solution}\n`)
 })
 
 server.listen(port)
