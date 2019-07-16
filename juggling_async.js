@@ -6,7 +6,7 @@ const urls = process.argv.slice(2, 5)
 const solution = {}
 
 urls.forEach((url, index) => {
-  http.get(url, (response) => {
+  const request = http.get(url, (response) => {
     solution[index] = ''
     response.setEncoding('utf8')
     response.on('data', (data) => {
@@ -20,4 +20,6 @@ urls.forEach((url, index) => {
       }
     })
   })
+  request.on('error', (e) => console.log(e.message))
+  request.end()
 })
