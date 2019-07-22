@@ -6,6 +6,9 @@ const location = process.argv[3];
 
 const server = http.createServer((req, res) => {
   const readStream = fs.createReadStream(location);
+
+  res.writeHead(200, {'content-type': 'text/plain'});
+
   readStream.on('open', () => {
     readStream.pipe(res);
   })
